@@ -266,6 +266,7 @@ struct svc_xprt {
 
 	int32_t xp_refcnt;	/* handle reference count */
 	uint16_t xp_flags;	/* flags */
+	struct poolq_head sendq;
 };
 
 /* Service record used by exported search routines */

@@ -115,6 +115,7 @@ svc_rdma_rendezvous(SVCXPRT *xprt)
 		SVC_DESTROY(&xd->sm_dr.xprt);
 		return (XPRT_DESTROYED);
 	}
+	poolq_head_setup(&xprt->xprt.sendq);
 	return (XPRT_IDLE);
 }
 
