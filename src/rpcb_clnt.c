@@ -346,7 +346,7 @@ static CLIENT *getclnthandle(const char *host, const struct netconfig *nconf,
 
 			if (targaddr) {
 				*targaddr = mem_zalloc(sizeof(sun.sun_path));
-				strncpy(*targaddr, _PATH_RPCBINDSOCK,
+				strlcpy(*targaddr, _PATH_RPCBINDSOCK,
 					sizeof(sun.sun_path));
 			}
 			return (client);
@@ -614,7 +614,7 @@ __rpcbind_is_up(void)
 	if (sock < 0)
 		return (false);
 	sun.sun_family = AF_LOCAL;
-	strncpy(sun.sun_path, _PATH_RPCBINDSOCK, sizeof(sun.sun_path));
+	strlcpy(sun.sun_path, _PATH_RPCBINDSOCK, sizeof(sun.sun_path));
 
 	if (connect(sock, (struct sockaddr *)&sun, sizeof(sun)) < 0) {
 		close(sock);
