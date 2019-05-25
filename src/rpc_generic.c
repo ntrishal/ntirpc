@@ -63,6 +63,7 @@
 #include <assert.h>
 
 #include "rpc_com.h"
+#include "rpc_dplx_internal.h"
 
 void
 thr_keyfree(void *k)

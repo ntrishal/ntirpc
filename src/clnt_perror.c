@@ -46,6 +46,8 @@
 #include <rpc/auth.h>
 #include <rpc/clnt.h>
 
+#include "rpc_dplx_internal.h"
+
 static char *auth_errmsg(enum auth_stat);
 
 /*
