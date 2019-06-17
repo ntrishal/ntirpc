@@ -225,10 +225,10 @@ static void
 svc_ioq_write(SVCXPRT *xprt, struct xdr_ioq *xioq, struct poolq_head *ifph)
 {
 	struct poolq_entry *have;
-	int rc;
 
 	for (;;) {
-		rc = 0;
+		int rc = 0;
+
 		/* do i/o unlocked */
 		if (svc_work_pool.params.thrd_max
 		 && !(xprt->xp_flags & SVC_XPRT_FLAG_DESTROYED)) {
