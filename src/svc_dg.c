@@ -427,7 +427,7 @@ svc_dg_reply(struct svc_req *req)
 	struct cmsghdr *cmsg;
 	struct iovec iov;
 	size_t slen;
-	char buffer[SVC_CMSG_SIZE];
+	char buffer[SVC_CMSG_SIZE] = {0};
 
 	if (!xprt->xp_remote.nb.len) {
 		__warnx(TIRPC_DEBUG_FLAG_WARN,
