@@ -511,6 +511,7 @@ svc_vc_rendezvous(SVCXPRT *xprt)
 		SVC_DESTROY(newxprt);
 		/* Was never added to epoll */
 		SVC_RELEASE(newxprt, SVC_RELEASE_FLAG_NONE);
+		SVC_RELEASE(xprt, SVC_RELEASE_FLAG_NONE);
 		return (XPRT_DESTROYED);
 	}
 	return (XPRT_IDLE);

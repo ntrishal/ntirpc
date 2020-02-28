@@ -94,8 +94,6 @@ svc_dg_xprt_zalloc(size_t iosz)
 
 	/* Init SVCXPRT locks, etc */
 	rpc_dplx_rec_init(&su->su_dr);
-	/* Extra ref to match TCP */
-	SVC_REF(&su->su_dr.xprt, SVC_REF_FLAG_NONE);
 	xdr_ioq_setup(&su->su_dr.ioq);
 	return (su);
 }
@@ -523,6 +521,9 @@ svc_dg_unlink_it(SVCXPRT *xprt, u_int flags, const char *tag, const int line)
 	if (!xprt->xp_parent) {
 		/* only original parent is registered */
 		svc_rqst_xprt_unregister(xprt, flags);
+	} else {
+		/* Still need to unhook it */
+		svc_rqst_unhook(xprt);
 	}
 }
 
