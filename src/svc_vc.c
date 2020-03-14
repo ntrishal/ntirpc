@@ -514,6 +514,12 @@ svc_vc_rendezvous(SVCXPRT *xprt)
 		SVC_RELEASE(xprt, SVC_RELEASE_FLAG_NONE);
 		return (XPRT_DESTROYED);
 	}
+	
+	/* TODO: newxprt refcount is 2 from makefd_xprt. We don't need
+	 * to hold newxprt anymore as the newxprt is in hash tables now,
+	 * so reduce one here.
+	 */
+	SVC_RELEASE(newxprt, SVC_RELEASE_FLAG_NONE);
 	return (XPRT_IDLE);
 }
 
